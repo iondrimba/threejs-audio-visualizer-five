@@ -218,6 +218,7 @@ class App {
   }
 
   play() {
+    this.audioCtx.resume();
     this.audioElement.play();
     this.btnPlay.classList.remove('control-show');
     this.btnPause.classList.add('control-show');
