@@ -68,7 +68,7 @@ THREE.Reflector = function (geometry, options) {
 
     if ('recursion' in camera.userData) {
 
-      if (camera.userData.recursion === recursion) return;
+      if (camera.userData.recursion === recursion) { return }
 
       camera.userData.recursion++;
     }
@@ -85,7 +85,7 @@ THREE.Reflector = function (geometry, options) {
 
     // Avoid rendering when reflector is facing away
 
-    if (view.dot(normal) > 0) return;
+    if (view.dot(normal) > 0) { return }
 
     view.reflect(normal).negate();
     view.add(reflectorWorldPosition);
