@@ -282,7 +282,7 @@ export default class App {
   }
 
   addCameraControls() {
-    this.controls = new THREE.OrbitControls(this.camera);
+    this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
   }
 
   create3DObj(geometry, material) {
