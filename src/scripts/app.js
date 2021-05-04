@@ -1,5 +1,8 @@
 import '../scss/index.scss';
 import Loader from './loader';
+import * as TweenMax from './TweenMax.min';
+import * as THREE from 'three';
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 export default class App {
   constructor() {
@@ -84,19 +87,6 @@ export default class App {
 
     const cubemap = new THREE.CubeTextureLoader().load(urls);
     cubemap.format = THREE.RGBAFormat;
-
-    const shader = THREE.ShaderLib['cube'];
-    shader.uniforms['tCube'].texture = cubemap;
-
-    const material = new THREE.ShaderMaterial({
-      fragmentShader: shader.fragmentShader,
-      vertexShader: shader.vertexShader,
-      uniforms: shader.uniforms,
-      depthWrite: false
-    });
-
-    const skybox = new THREE.Mesh(new THREE.CubeGeometry(100, 100, 100), material);
-    skybox.flipSided = true;
 
     const geometry = new THREE.OctahedronGeometry(3, 0);
     const sphereMaterial = new THREE.MeshStandardMaterial({
@@ -282,7 +272,7 @@ export default class App {
   }
 
   addCameraControls() {
-    this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
   }
 
   create3DObj(geometry, material) {
